@@ -1,0 +1,202 @@
+@import "./variables.scss";
+
+body {
+	background-color: $almost-black;
+	color: $white;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-size: 12pt;
+	height: 100vh;
+	margin: auto;
+}
+
+a {
+	cursor: pointer;
+}
+
+a.button, button {
+	background: none;
+	border: 0;
+	color: $button-blue;
+	cursor: pointer;
+	font-size: 1em;
+	padding: 0;
+	text-decoration: none;
+
+	&.danger {
+		color: $danger-red;
+	}
+
+	&:hover {
+		color: darken($button-blue, $amount: 10);
+
+		&.danger {
+			color: darken($danger-red, $amount: 10);
+		}
+	}
+
+	&:active, &:focus {
+		color: darken($button-blue, $amount: 20);
+		outline: none;
+
+		&.danger {
+			color: darken($danger-red, $amount: 20);
+		}
+	}
+}
+
+div {
+	box-sizing: border-box;
+}
+
+svg.svg-inline--fa {
+	margin-right: .25em;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	thead {
+		font-weight: bold;
+	}
+
+	td {
+		border: solid .1rem $light-grey;
+		max-width: 50%;
+		margin: 0;
+		padding: .5rem;
+	}
+}
+
+.blocker {
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99;
+
+	.modal {
+		background-color: $almost-black;
+		border-radius: 1rem;
+		box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.5);
+		padding: 1rem;
+		height: 80%;
+		width: 80%;
+	}
+}
+
+.button-container {
+	margin: 0 .25rem;
+	text-align: right;
+
+	button {
+		margin: 0 .25rem;
+	}
+}
+
+.button-spacer {
+	display: flex;
+	justify-content: space-between;
+
+	&:not(:first-child) {
+		margin-top: 1rem;
+	}
+}
+
+.slider-control {
+	display: flex;
+	margin: 1rem 0;
+	justify-content: space-between;
+
+	&.active {
+		label.slider {
+			background-color: #00cf00;
+
+			div.slider-puck {
+				left: 1rem;
+			}
+		}
+	}
+
+	label.slider {
+		background: $dark-grey;
+		border: $light-grey .05em solid;
+		border-radius: .8em;
+		font-size: 1.2rem;
+		height: 1.2em;
+		position: relative;
+		width: 2.2em;
+		transition: background-color ease-in-out .2s;
+
+		&::before {
+			content: "I";
+			font-size: .6em;
+			left: .6em;
+			position: absolute;
+			top: .4em;
+			z-index: 0;
+		}
+
+		&::after {
+			content: "0";
+			font-size: .6em;
+			position: absolute;
+			right: .4em;
+			top: .4em;
+			z-index: 0;
+		}
+
+		div.slider-puck {
+			background-color: $light-grey;
+			border-radius: .6rem;
+			height: 1.2em;
+			left: 0;
+			position: absolute;
+			top: 0;
+			transition: ease-in-out left .2s;
+			width: 1.4em;
+			z-index: 1;
+		}
+	}
+
+	input[type=checkbox] {
+		display: none;
+	}
+}
+
+.tab-control {
+	display: flex;
+	margin: .5rem 0;
+
+	label {
+		border: $button-blue .1rem;
+		border-style: solid hidden solid hidden;
+		cursor: pointer;
+		flex-grow: 1;
+		text-align: center;
+		padding: .5em 0;
+
+		&.active {
+			background-color: $button-blue;
+		}
+
+		&:first-of-type {
+			border-left-style: solid;
+			border-radius: .5rem 0 0 .5rem;
+		}
+
+		&:last-of-type {
+			border-right-style: solid;
+			border-radius: 0 .5rem .5rem 0;
+		}
+	}
+
+	input[type=radio] {
+		display: none;
+	}
+}

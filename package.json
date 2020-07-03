@@ -1,0 +1,100 @@
+{
+	"name": "zoomkitty",
+	"productName": "Zoomkitty",
+	"version": "1.1.0",
+	"description": "A Zoom allocation generator for Tabbycat",
+	"main": ".webpack/main",
+	"scripts": {
+		"start": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "electron-forge make",
+		"publish": "electron-forge publish",
+		"lint": "eslint --ext .ts ."
+	},
+	"keywords": [],
+	"author": {
+		"name": "Sébastien Dunne Fulmer",
+		"email": "me@sebastienfulmer.com"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"config": {
+		"forge": {
+			"packagerConfig": {
+				"icon": "zoomkitty.icns"
+			},
+			"makers": [
+				{
+					"name": "@electron-forge/maker-squirrel",
+					"config": {
+						"name": "Zoomkitty"
+					}
+				},
+				{
+					"name": "@electron-forge/maker-zip",
+					"platforms": [
+						"darwin"
+					]
+				},
+				{
+					"name": "@electron-forge/maker-deb",
+					"config": {}
+				},
+				{
+					"name": "@electron-forge/maker-rpm",
+					"config": {}
+				}
+			],
+			"plugins": [
+				[
+					"@electron-forge/plugin-webpack",
+					{
+						"mainConfig": "./webpack.main.config.js",
+						"renderer": {
+							"config": "./webpack.renderer.config.js",
+							"entryPoints": [
+								{
+									"html": "./src/index.html",
+									"js": "./src/renderer.ts",
+									"name": "main_window"
+								}
+							]
+						}
+					}
+				]
+			]
+		}
+	},
+	"devDependencies": {
+		"@electron-forge/cli": "6.0.0-beta.51",
+		"@electron-forge/maker-deb": "6.0.0-beta.51",
+		"@electron-forge/maker-rpm": "6.0.0-beta.51",
+		"@electron-forge/maker-squirrel": "6.0.0-beta.51",
+		"@electron-forge/maker-zip": "6.0.0-beta.51",
+		"@electron-forge/plugin-webpack": "6.0.0-beta.51",
+		"@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+		"@typescript-eslint/eslint-plugin": "^2.18.0",
+		"@typescript-eslint/parser": "^2.18.0",
+		"copy-webpack-plugin": "^6.0.2",
+		"css-loader": "^3.0.0",
+		"electron": "9.0.3",
+		"eslint": "^6.8.0",
+		"eslint-plugin-import": "^2.20.0",
+		"file-loader": "^6.0.0",
+		"fork-ts-checker-webpack-plugin": "^3.1.1",
+		"node-loader": "^0.6.0",
+		"node-sass": "^4.14.1",
+		"sass-loader": "^8.0.2",
+		"style-loader": "^0.23.1",
+		"ts-loader": "^6.2.1",
+		"typescript": "^3.7.0",
+		"vue-loader": "^15.9.2",
+		"vue-template-compiler": "^2.6.11"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-free": "^5.13.0",
+		"electron-squirrel-startup": "^1.0.0",
+		"vue": "^2.6.11",
+		"vue-router": "^3.3.2",
+		"vuex": "^3.4.0"
+	}
+}
