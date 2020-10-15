@@ -26,7 +26,7 @@ export class TabbyImporter {
 							const obj = JSON.parse(body);
 
 							return Promise.all(obj.map((room: any) => {
-								const judges: any[] = [].concat(room.adjudicators.chair, room.adjudicators.panellists, room.adjudicators.trainees),
+								const judges: string[] = [].concat(room.adjudicators.chair || undefined, room.adjudicators.panellists, room.adjudicators.trainees),
 									teams: any[] = room.teams.map((t: any) => t.team);
 
 								return Promise.all([
