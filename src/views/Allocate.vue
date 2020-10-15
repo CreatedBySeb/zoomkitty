@@ -9,6 +9,7 @@
 			<input type="radio" name="import-manual" id="import-manual" value="Manual" v-model="importMode"/>
 		</div>
 
+		<p v-if="importMode == 'Auto'">Tabbycat import may take a minute, please be patient.</p>
 		<div v-if="importMode == 'Auto'" class="tabby-details">
 			<label>URL: </label>
 			<input type="text" v-model="tabbyURL" placeholder="Tabbycat URL" @change="saveChanges" />
@@ -119,8 +120,9 @@
 				else {
 					const importer = new TabbyImporter(this.tabbyURL, this.tabbyToken);
 					importer.getDraws().then((draws) => this.draws = draws);
-					alert("Tabbycat import may take a minute, please be patient.");
+					// alert("Tabbycat import may take a minute, please be patient.");
 					window.localStorage.setItem("draws", JSON.stringify(this.draws));
+					this.saveChanges();
 				}
 			},
 

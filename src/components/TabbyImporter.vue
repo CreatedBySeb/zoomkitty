@@ -85,6 +85,7 @@
 						console.log(participants);
 						this.participants = participants;
 					});
+					this.saveDetails();
 				}
 			},
 
